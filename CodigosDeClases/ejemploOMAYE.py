@@ -1,0 +1,1 @@
+x="Soy una variable del tipo Str asignada por Osvaldo"
