@@ -1,0 +1,32 @@
+Análisis del Algoritmo Radix Sort
+El Radix Sort es un algoritmo de ordenamiento no comparativo que organiza los números procesando cada dígito de los mismos, comenzando desde el dígito menos significativo (LSD, por sus siglas en inglés) hasta el más significativo.
+
+Operaciones Principales
+El algoritmo Radix Sort realiza tres tipos de operaciones fundamentales:
+
+División por exp: Para extraer los dígitos correspondientes de cada número.
+Clasificación de los elementos en función de los dígitos extraídos, utilizando una técnica de conteo.
+Actualización de las posiciones de los números en la lista después de cada iteración de ordenamiento por dígitos.
+Complejidad Temporal
+Radix Sort depende de dos factores:
+
+n: El número de elementos en la lista.
+k: La cantidad de dígitos en el número más grande (longitud máxima del número).
+Para entender mejor, el algoritmo se ejecuta en dos fases por cada dígito:
+
+Contar las ocurrencias de cada dígito (del 0 al 9), lo que tiene un costo lineal respecto al número de elementos en la lista: O(n).
+Reorganizar la lista en función de las ocurrencias de los dígitos, lo que también toma tiempo O(n).
+Dado que se procesa un número k veces (por cada dígito), la complejidad total es: 
+𝑂
+(
+𝑘
+⋅
+𝑛
+)
+O(k⋅n)
+
+Comparación con sorted()
+El método sorted() de Python usa el algoritmo Timsort, una combinación de merge sort e insertion sort, con una complejidad de O(n log n). Aunque Radix Sort puede ser más eficiente en términos de tiempo para listas grandes de números con un número fijo de dígitos, sorted() es más general y optimizado para distintos tipos de datos y listas desordenadas con diferente estructura.
+
+Conclusión
+Radix Sort tiene una complejidad temporal O(n), lo que lo hace muy eficiente para grandes listas de números con un número limitado de dígitos. Sin embargo, para listas de números con muchos dígitos o datos más complejos, algoritmos como sorted() pueden ser más flexibles y efectivos debido a su complejidad de O(n log n).

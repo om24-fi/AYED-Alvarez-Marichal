@@ -1,0 +1,26 @@
+El ordenamiento burbuja se basa principalmente en dos tipos de operaciones: 
+comparaciones e intercambios. 
+
+El algoritmo de ordenamiento burbuja tiene un bucle externo y un bucle interno, lo que produce una estructura de bucle for anidada.
+El bucle externo se ejecuta n-1 veces, donde n es el número de elementos en la lista. 
+Esto ocurre porque después de n-1 pasadas, todos los elementos ya habrán sido ordenados.
+El bucle interno realiza comparaciones entre elementos adyacentes. 
+En cada iteración del bucle externo, el número de comparaciones disminuye en 1 porque el último elemento ya está en su posición correcta.
+
+Suma de las comparaciones
+Para contar el número total de comparaciones, podemos hacer lo siguiente:
+En la primera pasada, el bucle interno realiza n-1  comparaciones.
+En la segunda, el bucle interno realiza n-2 comparaciones y en la última pasada, solo hay 1 comparación.
+
+Podemos expresar esto como una suma de una secuencia aritmética:
+(n-1) + (n-2) + (n-3) +  …  +1
+
+Con esta formula:
+S=n(n-1)/2
+La complejidad temporal de comparaciones en el algoritmo de burbuja es proporcional a esta fórmula, que es O(n**2)
+Aunque el factor 1/2 está presente, en la notación de complejidad asintótica lo ignoramos, interesa cómo crece la función en términos de n sin importar los terminos constantes
+
+De todas formas, en un enfoque mas cualitativo, dentificar que un bucle anidado que depende de n genera una complejidad cuadrática.
+
+
+El algoritmo Timsort (usado por sorted() en Python) es mucho más eficiente, con una complejidad temporal de O(n log n) en el peor y promedio de los casos, lo que lo convierte en la mejor opción para ordenar listas de tamaño considerable o con estructuras complejas.
