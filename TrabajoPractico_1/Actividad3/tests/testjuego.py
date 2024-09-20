@@ -1,7 +1,4 @@
 from modules.juegoguerra import JuegoGuerra
-from modules.mazo import Mazo, DequeEmptyError
-
-
 import unittest
 
 
