@@ -97,7 +97,6 @@ class ListaDobleEnlazada:
                         self.cabeza.anterior = None
         # Incrementamos el tamaño de la lista
         self.tamanio += 1
-
     def extraer(self, posicion=None):
         if self.esta_vacia():
             raise Exception("La lista está vacía")
@@ -114,7 +113,7 @@ class ListaDobleEnlazada:
         if posicion < 0 or posicion >= self.tamanio:
             raise IndexError("Posición fuera de rango")
 
-        # Extraer el primer nodo (la cabeza)
+        # Extraer el primer nodo (la cabeza) en O(1)
         if posicion == 0:
             valor = self.cabeza.dato
             self.cabeza = self.cabeza.siguiente
@@ -122,7 +121,7 @@ class ListaDobleEnlazada:
                 self.cabeza.anterior = None
             else:
                 self.cola = None
-        # Extraer el último nodo (la cola)
+        # Extraer el último nodo (la cola) en O(1)
         elif posicion == self.tamanio - 1:
             valor = self.cola.dato
             self.cola = self.cola.anterior
@@ -130,19 +129,27 @@ class ListaDobleEnlazada:
                 self.cola.siguiente = None
             else:
                 self.cabeza = None
-        # Extraer un nodo en una posición intermedia
+        # Extraer un nodo en una posición intermedia en O(n), optimizado
         else:
-            actual = self.cabeza
-            for _ in range(posicion):
-                actual = actual.siguiente
+            if posicion < self.tamanio // 2:
+                # Recorrer desde la cabeza si la posición está más cerca de la cabeza
+                actual = self.cabeza
+                for _ in range(posicion):
+                    actual = actual.siguiente
+            else:
+                # Recorrer desde la cola si la posición está más cerca de la cola
+                actual = self.cola
+                for _ in range(self.tamanio - 1, posicion, -1):
+                    actual = actual.anterior
+
             valor = actual.dato
             actual.anterior.siguiente = actual.siguiente
             actual.siguiente.anterior = actual.anterior
-        if self.cabeza:
-                        self.cabeza.anterior = None
+
         # Reducimos el tamaño de la lista
         self.tamanio -= 1
         return valor
+
 
 
     def copiar(self):
@@ -152,10 +159,11 @@ class ListaDobleEnlazada:
         
         # Recorremos la lista actual y agregamos los elementos a la nueva lista
         while actual:
-            nueva_lista.agregar_al_final(actual.dato)
+            nueva_lista.agregar_al_final(actual.dato)  # Esta operación es O(1)
             actual = actual.siguiente
         
         return nueva_lista
+
 
     def invertir(self):
         # Invierte el orden de los nodos en la lista

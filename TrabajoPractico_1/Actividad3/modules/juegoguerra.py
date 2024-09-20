@@ -1,6 +1,6 @@
 
 from modules.mazo import Mazo, DequeEmptyError
-from modules.carta import Carta
+from .carta import Carta
 import random
 
 N_TURNOS = 10000

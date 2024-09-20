@@ -1,6 +1,4 @@
 import random
-import matplotlib.pyplot as plt
-import time
 
 class OrdenamientoQuicksort:
     def __init__(self):
@@ -26,46 +24,6 @@ class OrdenamientoQuicksort:
         sorted_list = self.quicksort(self.lista)
         return sorted_list
 
-def medir_tiempos_quicksort():
-    tamaños = list(range(1, 1001))  
-    tiempos_quicksort = []
-    tiempos_sorted = []
-
-    for tamaño in tamaños:
-        
-        lista = [random.randint(10000, 99999) for _ in range(tamaño)]
-
-        # Medir tiempo para OrdenamientoQuicksort
-        quicksort = OrdenamientoQuicksort()
-        for numero in lista:
-            quicksort.agregar_elemento(numero)
-        
-        start_time = time.time()
-        quicksort.obtener_lista()
-        end_time = time.time()
-        tiempos_quicksort.append(end_time - start_time)
-
-        # Medir tiempo para sorted()
-        start_time = time.time()
-        sorted(lista)
-        end_time = time.time()
-        tiempos_sorted.append(end_time - start_time)
-
-    # Graficar resultados
-    plt.figure(figsize=(12, 6))
-    plt.plot(tamaños, tiempos_quicksort, label='Quicksort', color='blue')
-    plt.plot(tamaños, tiempos_sorted, label='sorted()', color='red')
-    plt.xlabel('Tamaño de la lista')
-    plt.ylabel('Tiempo (segundos)')
-    plt.title('Tiempo de Ejecución vs Tamaño de la Lista')
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-
-    
-    
-if __name__ == "__main__":
-    medir_tiempos_quicksort()
 #Aqui la parte: de corroborar con una lista de datos
 
 listadesordenada=OrdenamientoQuicksort()

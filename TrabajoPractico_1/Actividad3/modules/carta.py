@@ -56,3 +56,4 @@ if __name__ == "__main__":
     print(carta)
     carta.visible = True
     print(carta)
+   

@@ -3,34 +3,55 @@ from .carta import Carta
 
 class DequeEmptyError(Exception):
     pass
-
 class Mazo:
     def __init__(self):
-        self.cartas = ListaDobleEnlazada()  # Usamos ListaDobleEnlazada para gestionar las cartas
+        """Inicializa el mazo usando una lista doblemente enlazada."""
+        self.cartas = ListaDobleEnlazada()
+        self.mazo = self
+
+    def __len__(self):
+        """Devuelve la cantidad de cartas que hay en el mazo."""
+        return self.cartas.tamanio  
 
     def poner_carta_arriba(self, carta):
-        """Añade una carta al principio del mazo (arriba)."""
-        self.cartas.agregar_al_inicio(carta)
-
+        """Añade una carta al inicio del mazo (parte superior)."""
+        self.cartas.agregar_al_inicio(carta)  
+    
     def poner_carta_abajo(self, carta):
-        """Añade una carta al final del mazo (abajo)."""
+        """Añade una carta al final del mazo (parte inferior)."""
         self.cartas.agregar_al_final(carta)
 
     def sacar_carta_arriba(self, mostrar=False):
-        """Retira la carta que está en la parte superior del mazo.
-        Lanza DequeEmptyError si el mazo está vacío."""
-        if self.cartas.esta_vacia():
-            raise DequeEmptyError("No se puede sacar una carta de un mazo vacío.")
+        """Saca la carta que está al inicio del mazo (parte superior)."""
+        if self.esta_vacio():
+            raise DequeEmptyError("El mazo está vacío")
+        carta = self.cartas.extraer(0)  # Extrae la primera carta (al inicio)
         
-        carta = self.cartas.extraer(0)  # Sacamos la primera carta (arriba)
         if mostrar:
-            print(f"Se saca la carta: {carta}")
-        return carta
+            carta.visible = True  # Mostrar la carta si el argumento es True
+            
+        return carta  
 
-    def __len__(self):
-        """Devuelve el número de cartas en el mazo."""
+    def sacar_carta_abajo(self):
+        """Saca la carta que está al final del mazo (parte inferior)."""
+        if self.esta_vacio():
+            raise DequeEmptyError("El mazo está vacío")
+        return self.cartas.extraer()  # Extrae la última carta (al final)
+
+    def esta_vacio(self):
+        """Devuelve True si el mazo está vacío, False si tiene cartas."""
+        return len(self.cartas) == 0
+
+    def tamanio(self):
+        """Devuelve la cantidad de cartas que hay en el mazo."""
         return len(self.cartas)
 
-    def __str__(self):
-        """Devuelve la representación del mazo en forma de cadena."""
-        return " ".join(str(carta) for carta in self.cartas)  # Mostrar las cartas del mazo
+    @property
+    def cabeza(self):
+        if self.cartas.cabeza:
+            return self.cartas.cabeza.dato
+        return None
+    
+    @property
+    def cola(self):
+        return self.cartas.cola
