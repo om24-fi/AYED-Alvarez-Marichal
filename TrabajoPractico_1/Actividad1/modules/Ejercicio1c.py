@@ -125,3 +125,16 @@ def medir_tiempos():
 
 if __name__ == "__main__":
     medir_tiempos()
+
+
+#Aqui la parte: de corroborar con una lista de datos
+
+listadesordenada=RadixSort()
+for num in range(500):
+    x=random.randint(10000,99999)
+    listadesordenada.agregar_elemento(x)
+z=listadesordenada.obtener_lista()
+print(f"la lista desordenada es: {z}")
+listadesordenada.ordenar()
+z=listadesordenada.obtener_lista()
+print(f"la lista ordenada ahora es {z}")
