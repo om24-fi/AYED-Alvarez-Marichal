@@ -1,0 +1,27 @@
+El algoritmo Quicksort es un método eficiente para ordenar listas que se basa en el concepto de dividir y conquistar. Este algoritmo utiliza un enfoque recursivo que puede dividir la lista en sublistas más pequeñas, lo que resulta en una ordenación efectiva.
+
+Funcionamiento del Algoritmo:
+
+Se selecciona un elemento de la lista como pivote. En este caso, se elige el elemento que se encuentra en la posición central de la lista.
+División de la Lista:
+
+La lista se divide en tres partes:
+Menor: Todos los elementos que son menores que el pivote.
+Medio: Todos los elementos que son iguales al pivote.
+Mayor: Todos los elementos que son mayores que el pivote.
+Recursión:
+
+Se aplica el algoritmo Quicksort recursivamente a las sublistas menor y mayor, y se combinan los resultados con la sublista medio.
+
+Complejidad Temporal:
+La complejidad temporal del Quicksort es en promedio 𝑂(𝑛log)(𝑛)
+O(nlogn), lo que lo convierte en uno de los algoritmos de ordenamiento más eficientes para listas grandes. Sin embargo, en el peor de los casos (por ejemplo, si la lista ya está ordenada y se elige siempre el primer o el último elemento como pivote), la complejidad puede degradarse a 𝑂(𝑛2)O(n**2).
+
+Comparación con la Función sorted():
+Al comparar ambos métodos de ordenamiento, la función sorted() de Python se mostrará generalmente más eficaz y rápida en la mayoría de los casos. Esto se debe a su optimización y el uso del algoritmo Timsort. La implementación de quicksort es menos eficiente en términos de uso de memoria y tiempo de ejecución, especialmente en listas grandes o ya ordenadas.
+
+Visualización de Resultados:
+Los tiempos de ejecución se grafican utilizando matplotlib, donde se puede observar el rendimiento del algoritmo Quicksort frente al de sorted(). La gráfica muestra cómo aumenta el tiempo de ejecución en función del tamaño de la lista.
+
+Uso del Algoritmo:
+El código permite agregar elementos a la lista, ordenar la lista utilizando Quicksort y obtener la lista ordenada. Si se intenta ordenar una lista vacía, se lanza un ValueError
