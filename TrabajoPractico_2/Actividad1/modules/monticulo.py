@@ -6,7 +6,7 @@ class MonticuloMinimo:
         # Insertar el paciente en la última posición
         self.data.append(paciente)
         # Ajustar hacia arriba para restaurar la propiedad del montículo
-        self.__ajustar_hacia_arriba(len(self.data) - 1)
+        self.__ajustar_hacia_arriba(len(self.data) - 1) #haria las operaciones de infiltracion desde el ultimo elemento agregado hacia arriba, tantas veces como corresponda
     
     def extraer_min(self):
         if len(self.data) == 0:
@@ -52,7 +52,7 @@ class MonticuloMinimo:
         self.data[i], self.data[j] = self.data[j], self.data[i]
     
     def __comparar(self, paciente1, paciente2):
-        # Primero comparamos por nivel de riesgo (ahora positivo, el menor riesgo tiene más prioridad)
+        # Primero convno tiene más prioridad)
         if paciente1.get_riesgo() != paciente2.get_riesgo():
             return paciente1.get_riesgo() - paciente2.get_riesgo()  # El menor riesgo tiene prioridad
         # Si los niveles de riesgo son iguales, comparamos por el timestamp (el que llegó antes tiene más prioridad)
